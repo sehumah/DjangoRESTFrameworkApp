@@ -10,7 +10,7 @@ from rest_framework import status
 
 
 @api_view(['GET', 'POST'])
-def drinks(request):
+def drinks(request, format=None):
     # get all the drinks, serialize them & return them in json
     if request.method == 'GET':
         drinks = Drink.objects.all()
@@ -30,7 +30,7 @@ def drinks(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def detail(request, drink_id):
+def detail(request, drink_id, format=None):
     # get the drink from the DB using its id. check to see if the given id is valid
     try:
         drink = Drink.objects.get(pk=drink_id)
