@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'drink.apps.DrinkConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
