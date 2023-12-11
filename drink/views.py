@@ -15,7 +15,8 @@ def drinks(request):
     if request.method == 'GET':
         drinks = Drink.objects.all()
         drink_serializer = DrinkSerializer(drinks, many=True)
-        return JsonResponse({'drinks': drink_serializer.data})
+        # return JsonResponse({'drinks': drink_serializer.data})
+        return Response(data=drink_serializer.data)  # use this new Response behavior instead
 
     # add a drink to the database: take the data sent, deserialize it and create a drink object out of it
     if request.method == 'POST':
@@ -49,4 +50,5 @@ def detail(request, drink_id):
             return Response(drink_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     elif request.method == 'DELETE':
-        pass
+        drink.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
